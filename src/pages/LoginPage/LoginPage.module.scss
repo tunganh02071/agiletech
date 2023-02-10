@@ -1,0 +1,46 @@
+.login-page {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  &__header {
+    h1 {
+      font-weight: 400;
+      font-size: 64px;
+      line-height: 160%;
+    }
+  }
+  &__form {
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login {
+  margin-top: 40px;
+  color: white;
+  font-size: 16px;
+  line-height: 160%;
+  background: #9c69e2;
+  border-radius: 50px;
+  border: none;
+}
+
+.title-account {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 160%;
+  letter-spacing: 0.005em;
+  color: #000000;
+}
+
+input {
+  background: #fdfdfd;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  &:focus {
+    outline: none;
+  }
+}
