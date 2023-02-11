@@ -1,10 +1,21 @@
 .page-layout {
   width: 100%;
-  &__header {
+  &__total {
     margin-bottom: 30px;
     padding-top: 60px;
+
     &--banner {
       padding-top: 100px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 130px;
+    &--logo {
+      display: flex;
+      align-items: flex-end;
     }
   }
 
@@ -15,6 +26,10 @@
   &__footer {
     padding-top: 110px;
   }
+}
+
+.image-1 {
+  margin-right: 10px;
 }
 
 .profile {
@@ -140,4 +155,13 @@ span {
 .icon-message {
   font-size: 30px;
   color: #9c69e2;
+}
+
+.logo-header {
+  display: flex;
+  align-items: baseline;
+}
+
+.logo-text {
+  margin-left: 20px;
 }

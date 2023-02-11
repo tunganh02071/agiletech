@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -27,6 +28,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // types
 import { PageLayoutProps, RoutePath } from "src/types";
+import image1 from "../../../image/Rectangle 32.png";
+import image2 from "../../../image/Rectangle 33.png";
 
 // component
 
@@ -66,30 +69,36 @@ const PageLayout = memo(({ children }: PageLayoutProps) => {
 
   return (
     <div className={cx("page-layout")}>
-      <div className={cx("page-layout__header")}>
+      <div className={cx("page-layout__total")}>
         <div className="container">
-          {/* <div className={cx("page-layout__header--logo")}>
-          <button className={cx("page-layout__header--logo")}></button>
-          <button className={cx("page-layout__header--logo")}></button>
-        </div> */}
-          {isLoggedIn ? (
-            <div className={cx("button-group")}>
-              <a href={RoutePath.Post}>
-                <button className={cx("button-sign-in", "profile")}>
-                  Profile
+          <div className={cx("page-layout__header")}>
+            <div className={cx("page-layout__header--logo")}>
+              <div className={cx("image-1")}>
+                <img src={image1} alt="/" />
+              </div>
+              <div className={cx("image-2")}>
+                <img src={image2} alt="/" />
+              </div>
+            </div>
+            {isLoggedIn ? (
+              <div className={cx("button-group")}>
+                <a href={RoutePath.Post}>
+                  <button className={cx("button-sign-in", "profile")}>
+                    Profile
+                  </button>
+                </a>
+                <button className={cx("button-sign-in")} onClick={logout}>
+                  Logout
                 </button>
-              </a>
-              <button className={cx("button-sign-in")} onClick={logout}>
-                Logout
-              </button>
-            </div>
-          ) : (
-            <div className={cx("page-layout__header--button")}>
-              <Link to={RoutePath.Login}>
-                <button className={cx("button-sign-in")}>Sign In</button>
-              </Link>
-            </div>
-          )}
+              </div>
+            ) : (
+              <div className={cx("page-layout__header--button")}>
+                <Link to={RoutePath.Login}>
+                  <button className={cx("button-sign-in")}>Sign In</button>
+                </Link>
+              </div>
+            )}
+          </div>
           <div className={cx("page-layout__header--banner")}>
             <img
               className={cx("image-banner")}
@@ -111,7 +120,19 @@ const PageLayout = memo(({ children }: PageLayoutProps) => {
             <div className={cx("footer-page")}>
               <div className={cx("footer-page__company")}>
                 <div className={cx("logo")}>
-                  <p>DataWarehouse</p>
+                  <div className={cx("logo-header")}>
+                    <div className={cx("page-layout__header--logo")}>
+                      <div className={cx("image-1")}>
+                        <img src={image1} alt="/" />
+                      </div>
+                      <div className={cx("image-2")}>
+                        <img src={image2} alt="/" />
+                      </div>
+                    </div>
+                    <div className={cx("logo-text")}>
+                      <p>DataWarehouse</p>
+                    </div>
+                  </div>
                   <span>
                     Warehouse Society, 234 <br />
                     Bahagia Ave Street PRBW 29281
