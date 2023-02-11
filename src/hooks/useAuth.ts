@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // library
 import { useCookies } from "react-cookie";
 import _ from "lodash";
@@ -11,18 +12,16 @@ const useAuth = () => {
     "refreshToken",
   ]);
 
+  const setAuth = (data: AuthData) => {
+    setCookie("accessToken", data.accessToken);
+    setCookie("refreshToken", data.refreshToken);
+  };
   const authData = {
     accessToken: cookies.accessToken,
     refreshToken: cookies.refreshToken,
   };
 
-  const isLoggedIn =
-    !_.isNil(authData.accessToken) && !_.isNil(authData.refreshToken);
-  const setAuth = (data: AuthData) => {
-    setCookie("accessToken", data.accessToken);
-    setCookie("refreshToken", data.refreshToken);
-  };
-
+  const isLoggedIn = !_.isNil(authData.accessToken);
   const clearAuth = () => {
     removeCookie("accessToken");
     removeCookie("refreshToken");

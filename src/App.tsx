@@ -9,13 +9,12 @@ import HomePage from "src/pages/HomePage/HomePage";
 import PageLayout from "./components/layouts/PageLayout/PageLayout";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
-import TaskList from "./pages/TaskListPage/TaskListPage";
 // styles
 import "./global.scss";
 import useAuth from "./hooks/useAuth";
-import NotFoundPage from "./pages/Component/NotFoundPage";
-import CreateTaskPage from "./pages/CreateTaskPage/CreateTaskPage";
-import EditTaskPage from "./pages/EditTaskPage/EditTaskPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import CreatePostPage from "./pages/CreateTaskPage/CreateTaskPage";
+import EditPostPage from "./pages/EditTaskPage/EditTaskPage";
 import Profile from "./pages/Profile/Profile";
 
 function App() {
@@ -40,24 +39,20 @@ function App() {
       path: `${RoutePath.Login}`,
       element: <LoginPage />,
     },
-    {
-      path: `${RoutePath.Post}`,
-      element: <Profile />,
-    },
   ];
 
   const protectedPages = [
     {
-      path: `${RoutePath.TaskList}`,
-      element: <TaskList />,
+      path: `${RoutePath.Post}`,
+      element: <Profile />,
     },
     {
       path: `${RoutePath.CreateTask}`,
-      element: <CreateTaskPage />,
+      element: <CreatePostPage />,
     },
     {
       path: `${RoutePath.EditTask}`,
-      element: <EditTaskPage />,
+      element: <EditPostPage />,
     },
   ];
   const { isLoggedIn } = useAuth();
@@ -86,7 +81,7 @@ function App() {
           path={protectedPage.path}
           element={
             isLoggedIn ? (
-              <PageLayout>{protectedPage.element}</PageLayout>
+              protectedPage.element
             ) : (
               <Navigate to={RoutePath.Login} />
             )

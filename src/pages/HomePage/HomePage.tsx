@@ -16,7 +16,7 @@ const cx = bind.bind(styles);
 
 const HomePage = memo(() => {
   const { data, isLoading }: any = useQuery({
-    queryKey: ["tasks"],
+    queryKey: ["TESTIMONIALS"],
     queryFn: () => getTestimonials(TESTIMONIALS),
   });
   if (isLoading) {

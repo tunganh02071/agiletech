@@ -40,8 +40,7 @@ const schema = yup.object({
 
 const LoginPage = memo(() => {
   const { t } = useTranslation();
-  const { setAuth, authData } = useAuth();
-
+  const { setAuth, authData, isLoggedIn } = useAuth();
   const {
     register,
     formState: { errors },
@@ -52,35 +51,26 @@ const LoginPage = memo(() => {
     resolver: yupResolver(schema),
   });
   const navigate = useNavigate();
-
   const handleLoginUser = (data: any) => {
     loginMuatation.mutate(data, {
       onSuccess: (loginResponse) => {
-        setAuth({
-          accessToken: loginResponse.data.accessToken,
-          refreshToken: loginResponse.data.refreshToken,
-        });
+        if (loginResponse?.data?.accessToken) {
+          setAuth({
+            accessToken: loginResponse?.data?.accessToken,
+            refreshToken: loginResponse?.data?.refreshToken,
+          });
+          navigate(RoutePath.Home);
+        } else {
+          navigate(RoutePath.Login);
+        }
       },
     });
-    loginRefreshToken.mutate(authData.refreshToken);
     reset(data);
   };
 
   const loginMuatation = useMutation({
     mutationFn: (body: UserLogin) => {
       return userLogin(body);
-    },
-    onError: (data: any) => {},
-    onSuccess: () => {
-      navigate(RoutePath.Home);
-      toast.success(t("login_success"), {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-    },
-  });
-  const loginRefreshToken = useMutation({
-    mutationFn: (body: string) => {
-      return refreshToken(body);
     },
     onError: (data: any) => {},
     onSuccess: () => {},

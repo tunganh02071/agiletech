@@ -8,6 +8,7 @@
       margin-left: 35px;
       margin-top: 40px;
       p {
+        cursor: pointer;
         font-weight: 400;
         font-size: 20px;
         line-height: 160%;
@@ -23,6 +24,9 @@
       justify-content: space-between;
       align-items: center;
       padding-bottom: 40px;
+    }
+    &--table {
+      text-align: center;
     }
   }
 }
@@ -58,4 +62,8 @@
       outline: none;
     }
   }
+}
+
+.button-edit {
+  margin-right: 45px;
 }

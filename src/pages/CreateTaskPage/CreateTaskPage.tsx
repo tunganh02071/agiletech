@@ -23,7 +23,7 @@ import {
   TASK_FORM_TITLE,
 } from "./consts";
 
-const CreateTaskPage = memo(() => {
+const CreatePostPage = memo(() => {
   const { t } = useTranslation();
   const { data: assigneeResponse } = useQuery({
     queryKey: ["assignetask"],
@@ -74,4 +74,4 @@ const CreateTaskPage = memo(() => {
   );
 });
 
-export default CreateTaskPage;
+export default CreatePostPage;

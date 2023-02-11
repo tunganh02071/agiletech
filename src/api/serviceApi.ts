@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-plusplus */
+/* eslint-disable eqeqeq */
+/* eslint-disable react-hooks/rules-of-hooks */
 import axios from "axios";
 import {
   ITaskFormData,
@@ -9,6 +13,22 @@ import {
   UserSignIn,
 } from "src/types";
 
+function getCookie(cname: any) {
+  const name = `${cname}=`;
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+const headerToken = getCookie("accessToken");
 const apiClient = axios.create({
   baseURL: "http://localhost:4000",
   headers: {
@@ -102,5 +122,13 @@ export const userLogin = (user: UserSignIn) =>
 export const refreshToken = (token: string) =>
   apiAgileTech.post("auth/refresh-token", token);
 
-export const userLogout = (token: any) =>
-  apiAgileTech.delete("auth/logout", token);
+export const userLogout = () => apiAgileTech.delete("auth/logout");
+
+export const getPost = () =>
+  apiClient.get(`posts`, {
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJhZG1pbjEiLCJpYXQiOjE2NzYxMjU2OTEsImV4cCI6MTY3NjIxMjA5MX0.78BO-rNEi_1O4ZedLmKBGJBMaVVEUVKoLeSgN7ZxcLY",
+    },
+  });

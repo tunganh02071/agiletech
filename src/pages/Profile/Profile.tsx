@@ -22,6 +22,10 @@ import * as yup from "yup";
 
 // styles
 import { InputGroup, Table } from "react-bootstrap";
+import { useQuery } from "@tanstack/react-query";
+import { getPost } from "src/api/serviceApi";
+import { AiFillDelete } from "react-icons/ai";
+import { FiEdit2 } from "react-icons/fi";
 import styles from "./Profile.module.scss";
 
 const cx = bind.bind(styles);
@@ -32,22 +36,15 @@ const schema = yup.object({
 
 const Profile = memo(() => {
   const { t } = useTranslation();
+
+  const { data, isLoading, refetch }: any = useQuery({
+    queryKey: ["post"],
+    queryFn: () => getPost(),
+  });
+  console.log(data);
   return (
     <div className={cx("profile-page")}>
       <div className={cx("profile-page__header")}>
-        {/* <div>
-            <Form.Select
-              className={cx("status-select")}
-              value={selectedStatus}
-              onChange={(event) => setSelectedStatus(event.target.value)}
-            >
-              {STATUS_DATA.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {t(`${option.text}`)}
-                </option>
-              ))}
-            </Form.Select>
-          </div> */}
         <div className={cx("profile-page__header--text")}>
           <p>Post</p>
           <p>Logout</p>
@@ -68,35 +65,61 @@ const Profile = memo(() => {
             </select>
           </div>
         </div>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan={2}>Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </Table>
+        <div className={cx("profile-page__body--table")}>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Tags</th>
+                <th>Acition</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>ABC</td>
+                <td>Description</td>
+                <td>HTML, CSS</td>
+                <td>
+                  <FiEdit2 className={cx("button-edit")} />
+                  <AiFillDelete />
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>ABC</td>
+                <td>Description</td>
+                <td>HTML, CSS</td>
+                <td>
+                  <FiEdit2 className={cx("button-edit")} />
+                  <AiFillDelete />
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>ABC</td>
+                <td>Description</td>
+                <td>HTML, CSS</td>
+                <td>
+                  <FiEdit2 className={cx("button-edit")} />
+                  <AiFillDelete />
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>ABC</td>
+                <td>Description</td>
+                <td>HTML, CSS</td>
+                <td>
+                  <FiEdit2 className={cx("button-edit")} />
+                  <AiFillDelete />
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
       </div>
 
       {/* <div className={cx("profile-page__footer")}>

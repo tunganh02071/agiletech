@@ -48,7 +48,7 @@ const PageLayout = memo(({ children }: PageLayoutProps) => {
 
   const logoutUser = useMutation({
     mutationFn: () => {
-      return userLogout(authData.accessToken);
+      return userLogout();
     },
     onError: (data: any) => {},
     onSuccess: () => {
@@ -60,11 +60,7 @@ const PageLayout = memo(({ children }: PageLayoutProps) => {
 
   const logout = () => {
     logoutUser.mutate(authData.accessToken);
-    // clearAuth();
-    navigate(RoutePath.Home);
-  };
-
-  const handelClickUser = () => {
+    clearAuth();
     navigate(RoutePath.Home);
   };
 
@@ -77,7 +73,7 @@ const PageLayout = memo(({ children }: PageLayoutProps) => {
           <button className={cx("page-layout__header--logo")}></button>
         </div> */}
           {isLoggedIn ? (
-            <div className={cx("button-group")} onClick={handelClickUser}>
+            <div className={cx("button-group")}>
               <a href={RoutePath.Post}>
                 <button className={cx("button-sign-in", "profile")}>
                   Profile

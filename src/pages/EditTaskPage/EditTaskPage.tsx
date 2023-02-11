@@ -29,7 +29,7 @@ import {
 
 // styles
 
-const EditTaskPage = memo(() => {
+const EditPostPage = memo(() => {
   const { t } = useTranslation();
   const { taskId } = useParams();
 
@@ -118,4 +118,4 @@ const EditTaskPage = memo(() => {
   );
 });
 
-export default EditTaskPage;
+export default EditPostPage;
